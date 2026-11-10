@@ -180,7 +180,7 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
 .feed { margin-top: 16px; display: flex; flex-direction: column; gap: 9px; }
 .feed:empty { margin-top: 0; }
 .step {
-  border: 1px solid var(--line); border-left: 4px solid #ccd6e8; background: #fbfcfe;
+  border: 1px solid var(--line); border-left: 4px solid #ccd6e8; background: #fbfcfe; color: var(--ink);
   border-radius: 12px; padding: 11px 14px; font-size: 14px; line-height: 1.5;
   animation: step-in .3s ease both;
 }
@@ -379,6 +379,8 @@ footer strong { color: var(--ink-soft); }
 [data-theme="dark"] .chip { background: var(--card); }
 [data-theme="dark"] .chip:hover { background: #2a1a12; }
 [data-theme="dark"] .step.pitch { background: #2a1c12; border-color: #5a3a22; color: #f0c39a; }
+[data-theme="dark"] .step { background: #182238; border-color: #273350; }
+[data-theme="dark"] .step.nomatch { background: #1a2338; }
 [data-theme="dark"] .pending-card { background: linear-gradient(180deg, #2b2410, #201a09); border-color: #8a6d1f; }
 [data-theme="dark"] .plea-card { background: linear-gradient(180deg, #2e161d, #211016); border-color: #7a3542; }
 [data-theme="dark"] .plea-text { color: #f3c3cd; }
