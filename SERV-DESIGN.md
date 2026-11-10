@@ -212,9 +212,10 @@ of the $1.00 account balance.
 
 1. ~~Real API adapter~~ — done and live-proven, see §5. `npm test`
    still passes 42/42 in mock mode, unchanged.
-2. **New public GitHub repo** for the SERV edition (this workspace has a
-   fresh `git init`; nothing has been pushed). Suggested name:
-   `aijajan-serv`. Keep the PayPal repo separate and untouched.
+2. ~~GitHub repo~~ — done 2026-11-10:
+   https://github.com/Revaaa28/aijajan-serv (public, hygiene-verified:
+   `.env` gitignored and absent, no secret values in any tracked file).
+   The PayPal repo stays separate and untouched.
 3. **Deploy** a separate instance (e.g. a second Render service) so the
    SERV demo is live without disturbing the PayPal demo; set
    `PAYPAL_MOCK` per the demo plan and `SERV_MOCK=0` + the key once the
