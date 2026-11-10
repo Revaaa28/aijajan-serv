@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <!-- antenna + coin -->
+  <rect x="116.5" y="30" width="7" height="24" rx="3.5" fill="#101a33"/>
+  <circle cx="120" cy="22" r="15" fill="#ffc53d"/>
+  <circle cx="120" cy="22" r="15" fill="none" stroke="#e8a100" stroke-width="3.5"/>
+  <!-- feet -->
+  <ellipse cx="86" cy="203" rx="16" ry="6.5" fill="#101a33"/>
+  <ellipse cx="154" cy="203" rx="16" ry="6.5" fill="#101a33"/>
+  <!-- wallet body -->
+  <rect x="50" y="52" width="140" height="146" rx="26" fill="#0070e0"/>
+  <path d="M50 140 v32 a26 26 0 0 0 26 26 h88 a26 26 0 0 0 26-26 v-32 a90 42 0 0 1 -140 0 z" fill="#005fc0" opacity="0.6"/>
+  <!-- snap clasp -->
+  <circle cx="184" cy="118" r="11" fill="#ffc53d" stroke="#e8a100" stroke-width="3.5"/>
+  <!-- eyes -->
+  <circle cx="93" cy="104" r="13.5" fill="#ffffff"/>
+  <circle cx="145" cy="104" r="13.5" fill="#ffffff"/>
+  <circle cx="95" cy="107" r="6.5" fill="#101a33"/>
+  <circle cx="147" cy="107" r="6.5" fill="#101a33"/>
+  <!-- smile -->
+  <path d="M106 130 q13 10 26 0" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round"/>
+  <!-- card slots -->
+  <rect x="70" y="152" width="62" height="9" rx="4.5" fill="#ffffff" opacity="0.38"/>
+  <rect x="70" y="169" width="44" height="9" rx="4.5" fill="#ffffff" opacity="0.38"/>
+</svg>

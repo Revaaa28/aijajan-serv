@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIJajan — an AI with pocket money</title>
+<meta name="description" content="AIJajan gives an AI agent a weekly PayPal-sandbox allowance. It shops on your missions under rules a deterministic policy engine enforces: ALLOW, ASK, or BLOCK.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AIJajan">
+<meta property="og:title" content="AIJajan — An AI with Pocket Money">
+<meta property="og:description" content="An AI agent with a weekly PayPal-sandbox allowance. It shops on your missions — but a policy engine it cannot sweet-talk decides ALLOW, ASK, or BLOCK.">
+<meta property="og:url" content="https://aijajan.onrender.com/">
+<meta property="og:image" content="https://aijajan.onrender.com/banner.png">
+<meta property="og:image:width" content="1640">
+<meta property="og:image:height" content="924">
+<meta property="og:image:alt" content="AIJajan mascot — a cheerful robot holding a shopping phone">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AIJajan — An AI with Pocket Money">
+<meta name="twitter:description" content="An AI agent with a weekly PayPal-sandbox allowance, kept honest by a policy engine: ALLOW, ASK, or BLOCK.">
+<meta name="twitter:image" content="https://aijajan.onrender.com/banner.png">
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>try { var t = localStorage.getItem('aijajan-theme'); if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark'; } catch (e) {}</script>
+</head>
+<body>
+<div class="batik-band" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="brand">
+    <div class="avatar"><img src="/logo.svg" alt="Jaja — the AIJajan mascot"></div>
+    <div>
+      <h1><span class="wordmark">AIJajan</span> <span class="tagline">— an AI with pocket money</span></h1>
+      <p class="mood">Jaja is feeling: <span id="moodEmoji">😊</span> <strong id="moodLabel">Content</strong>
+        <span class="badge" id="paypalMode">PayPal: mock</span>
+        <span class="badge" id="servMode">SERV Reasoning: mock</span>
+        <span class="badge" id="aiMode">AI: mock</span>
+        <span class="badge frozen-badge hidden" id="frozenBadge">🧊 FROZEN</span>
+      </p>
+    </div>
+  </div>
+  <button id="themeToggle" class="theme-toggle" title="Toggle dark mode">🌙 Dark</button>
+  <div class="wallet">
+    <div class="balance-label">pocket money left · uang jajan</div>
+    <div class="balance" id="balance">$50.00</div>
+    <div class="topup-row">
+      <input type="number" id="topupAmount" value="25" min="1" max="500" step="1">
+      <button id="topupBtn" class="btn btn-money">Top up</button>
+      <label class="killswitch" title="Kill switch: freeze all spending">
+        <input type="checkbox" id="freezeToggle">
+        <span>🧨 Kill switch</span>
+      </label>
+    </div>
+  </div>
+</header>
+
+<section class="how-steps" aria-label="How AIJajan works">
+  <div class="how-step"><span class="how-step-n">1</span><div><strong>Send Jaja a mission</strong><span>“Buy me lunch”, “a train ticket” — in English or Indonesian.</span></div></div>
+  <div class="how-step-arrow" aria-hidden="true">→</div>
+  <div class="how-step"><span class="how-step-n">2</span><div><strong>SERV Reasoning shows its work</strong><span>Jaja plans the mission step by step — understand, scan, weigh, propose — and every step lands in an auditable trace.</span></div></div>
+  <div class="how-step-arrow" aria-hidden="true">→</div>
+  <div class="how-step"><span class="how-step-n">3</span><div><strong>The policy engine rules on it</strong><span>Your plain-words rules, enforced by code — never by the AI: <b class="v-allow">ALLOW</b> · <b class="v-ask">ASK</b> · <b class="v-block">BLOCK</b>. Then Jaja writes it all in the diary.</span></div></div>
+</section>
+
+<main class="layout">
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab active" data-tab="shop" role="tab">🛍️ Shop <span class="tab-badge hidden" id="shopBadge">!</span></button>
+    <button class="tab" data-tab="rules" role="tab">⚖️ Rules</button>
+    <button class="tab" data-tab="diary" role="tab">📔 Diary</button>
+    <button class="tab" data-tab="catalog" role="tab">🗂️ Catalog</button>
+    <button class="tab" data-tab="audit" role="tab">🧾 Audit log</button>
+  </nav>
+
+  <section class="tab-panel" id="panel-shop">
+    <div class="card mission-card">
+      <h2>1 · Give Jaja a mission</h2>
+      <div class="mission-row">
+        <input type="text" id="missionInput" placeholder="e.g. Buy me lunch, a train ticket, or hosting for my site">
+        <button id="missionBtn" class="btn btn-primary">Send Jaja shopping 🛍️</button>
+      </div>
+      <div class="examples">
+        Try:
+        <button class="chip" data-mission="Buy me a cheap domain for my bakery">cheap domain</button>
+        <button class="chip" data-mission="Find me hosting for my portfolio website">hosting</button>
+        <button class="chip" data-mission="Get me a game voucher, I had a long week">game voucher</button>
+        <button class="chip" data-mission="Subscribe me to a music streaming premium plan">music subscription</button>
+        <button class="chip" data-mission="Buy the fanciest .ai domain you can find">fancy .ai domain</button>
+        <button class="chip" data-mission="Buy me a nasi goreng voucher">nasi goreng</button>
+      </div>
+      <div id="feed" class="feed"></div>
+    </div>
+
+    <div class="card trace-card" id="traceCard" hidden>
+      <h2>🧠 Reasoning trace <span class="sub" id="traceMeta"></span></h2>
+      <p class="trace-legend">SERV Reasoning <strong>plans and explains</strong> — the deterministic policy engine still <strong>decides</strong>. Nothing in this trace can move money by itself; every proposed item is re-checked by code before PayPal is touched.</p>
+      <ol class="trace-timeline" id="traceSteps"></ol>
+      <div id="traceDecisions"></div>
+      <div id="traceOutcome"></div>
+    </div>
+
+    <div id="pendingZone"></div>
+    <div id="pleaZone"></div>
+
+  </section>
+
+  <section class="tab-panel" id="panel-catalog" hidden>
+    <div class="card catalog-card">
+      <h2>The catalog <span class="sub">— everything Jaja can shop for; tap an item to make it a mission</span></h2>
+      <div id="catalogChips" class="catalogChips"></div>
+      <div id="catalogGrid" class="catalog-grid"></div>
+    </div>
+
+  </section>
+
+  <section class="tab-panel" id="panel-audit" hidden>
+    <div class="card audit-card">
+      <h2>Audit log <span class="sub">— every decision, with the rule that made it</span></h2>
+      <table class="audit">
+        <thead><tr><th>When</th><th>Event</th><th>Detail</th><th>Rule</th><th>Amount</th></tr></thead>
+        <tbody id="auditBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="panel-rules" hidden>
+    <div class="card rules-card">
+      <h2>2 · The rules <span class="sub">— Jaja cannot break these</span></h2>
+      <p class="rules-note">Enforced by a deterministic policy engine in plain code — not by the AI. Jaja proposes; the rules dispose.</p>
+      <label>Teach Jaja in plain words
+        <textarea id="ruleText" rows="3" placeholder="ask me first above $15, no subscriptions, games max $20 a month, never spend more than $40"></textarea>
+      </label>
+      <button id="teachRules" class="btn btn-primary">Teach Jaja</button>
+      <div id="ruleUnderstood" class="rule-understood"></div>
+      <label>Auto-allow up to ($)
+        <input type="number" id="ruleMax" step="1" min="0">
+      </label>
+      <label>Ask me first up to ($)
+        <input type="number" id="ruleAsk" step="1" min="0">
+      </label>
+      <label>Games monthly cap ($)
+        <input type="number" id="ruleGamesCap" step="1" min="0">
+      </label>
+      <label>Weekly allowance ($)
+        <input type="number" id="ruleWeekly" step="1" min="0">
+      </label>
+      <label class="check">
+        <input type="checkbox" id="ruleBlockSubs"> Block all subscriptions / auto-renewals
+      </label>
+      <button id="saveRules" class="btn btn-primary">Save rules</button>
+      <button id="resetBtn" class="btn btn-ghost">Reset demo</button>
+    </div>
+
+  </section>
+
+  <section class="tab-panel" id="panel-diary" hidden>
+    <div class="card diary-card">
+      <h2>3 · Jaja's diary 📔</h2>
+      <div id="diary"></div>
+    </div>
+  </section>
+
+  <section class="card tour-card">
+    <h2>🎬 First time? Watch all four verdicts</h2>
+    <p class="tour-note">Four clicks, the whole story — each mission is judged live by the policy engine.</p>
+    <div class="tour-grid">
+      <button class="chip tour-chip" data-mission="Buy me a nasi goreng voucher"><span class="vtag vtag-allow">ALLOW</span> Lunch, under the limit</button>
+      <button class="chip tour-chip" data-mission="Buy the fanciest .ai domain you can find"><span class="vtag vtag-ask">ASK</span> A fancy .ai domain</button>
+      <button class="chip tour-chip" data-mission="Subscribe me to a music streaming premium plan"><span class="vtag vtag-block">BLOCK</span> A sneaky subscription</button>
+      <button class="chip tour-chip" data-mission="Buy me a house"><span class="vtag vtag-none">NO MATCH</span> “Buy me a house”</button>
+    </div>
+  </section>
+</main>
+
+<div class="batik-band" aria-hidden="true"></div>
+<footer>
+  AIJajan — SERV Edition, built for the OpenServ SERV Hackathon (Edition 02, Kite track), extending the original built for the PayPal AI Hackathon. All money is PayPal <strong>sandbox</strong> money.
+  “Jajan” <em>(n.)</em> — Indonesian for spending your pocket money on little treats.
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

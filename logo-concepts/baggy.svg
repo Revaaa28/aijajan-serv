@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <!-- coin -->
+  <circle cx="120" cy="36" r="21" fill="#ffc53d"/>
+  <circle cx="120" cy="36" r="21" fill="none" stroke="#e8a100" stroke-width="4"/>
+  <circle cx="120" cy="36" r="12.5" fill="none" stroke="#e8a100" stroke-width="3"/>
+  <!-- feet -->
+  <ellipse cx="88" cy="209" rx="17" ry="7" fill="#101a33"/>
+  <ellipse cx="152" cy="209" rx="17" ry="7" fill="#101a33"/>
+  <!-- bag body -->
+  <rect x="60" y="64" width="120" height="142" rx="22" fill="#ff7847"/>
+  <path d="M60 150 v34 a22 22 0 0 0 22 22 h76 a22 22 0 0 0 22-22 v-34 a70 40 0 0 1 -120 0 z" fill="#f2662d" opacity="0.55"/>
+  <!-- coin slot -->
+  <rect x="94" y="60" width="52" height="9" rx="4.5" fill="#101a33" opacity="0.85"/>
+  <!-- face -->
+  <circle cx="95" cy="128" r="7.5" fill="#101a33"/>
+  <circle cx="145" cy="128" r="7.5" fill="#101a33"/>
+  <circle cx="97.5" cy="125" r="2.6" fill="#ffffff"/>
+  <circle cx="147.5" cy="125" r="2.6" fill="#ffffff"/>
+  <path d="M107 146 q13 11 26 0" fill="none" stroke="#101a33" stroke-width="5.5" stroke-linecap="round"/>
+  <circle cx="76" cy="145" r="7.5" fill="#ffb59d" opacity="0.85"/>
+  <circle cx="164" cy="145" r="7.5" fill="#ffb59d" opacity="0.85"/>
+  <!-- belly highlight -->
+  <ellipse cx="120" cy="184" rx="33" ry="14" fill="#ffffff" opacity="0.22"/>
+</svg>
